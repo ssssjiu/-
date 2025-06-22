@@ -1,0 +1,24 @@
+from ultralytics import YOLO # pip install ultralytics matplotlib opencv-python, ultralytics를 설치해야 모델을 돌릴 수 있습니
+import matplotlib.pyplot as plt
+
+# -----------------------------
+# 1. 모델 로드
+# -----------------------------
+model = YOLO('/home/ssssjiu/tomato/data/runs/tomato3/weights/tomato_image.pt')  # YOLOv11n으로 학습된 모델
+
+# -----------------------------
+# 2. 이미지 경로 설정
+# -----------------------------
+image_path = '/home/ssssjiu/tomato/data/test_image.jpg' # 확인하고 싶은 이미지 주소를 입력하는 
+
+# -----------------------------
+# 3. 이미지 추론
+# -----------------------------
+results = model(image_path)
+
+# -----------------------------
+# 4. 결과 시각화
+# -----------------------------
+# 결과 이미지 자동 저장됨 (runs/detect/predict/ 등)
+results[0].show()             # 결과 시각화
+results[0].save(filename='predicted.jpg')  # 결과 이미지 저장
